@@ -219,8 +219,8 @@ function Index() {
               <span className="block text-white/80 text-[0.55em] tracking-wide">на персональную лазерную гравировку</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              Создаём премиальную лазерную гравировку на металле, дереве, коже и аксессуарах —
-              <span className="text-white"> быстро, точно и с характером.</span>
+              Создаём стильные сувениры и подарки с идеальной детализацией —
+              <span className="text-white"> для особых людей, брендов и событий.</span>
             </p>
 
 
