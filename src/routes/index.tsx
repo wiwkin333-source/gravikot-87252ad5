@@ -206,9 +206,9 @@ function Index() {
               Ваш персональный лазер
             </div>
             <h1 className="mt-6 font-display font-black uppercase leading-[0.95] text-[clamp(2.4rem,6vw,5.2rem)]">
-              <span className="block shimmer-text">Лазерная</span>
-              <span className="block text-white text-neon">гравировка</span>
-              <span className="block text-white/80">нового уровня</span>
+              <span className="block shimmer-text">Скидка 27%</span>
+              <span className="block text-white text-neon">до конца недели</span>
+              <span className="block text-white/80 text-[0.55em] tracking-wide">на персональную лазерную гравировку</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg text-muted-foreground leading-relaxed">
               Создаём премиальную лазерную гравировку на металле, дереве, коже и аксессуарах —
