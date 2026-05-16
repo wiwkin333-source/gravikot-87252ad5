@@ -258,9 +258,12 @@ function Index() {
                 }}
               />
               <div className="relative rounded-[2rem] overflow-hidden glass animate-pulse-glow">
-                <img
-                  src={heroCat}
-                  alt="ГРАВИКОТ — неоновый кот в защитных очках, маскот бренда лазерной гравировки"
+                <video
+                  src="/videos/hero.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   width={1024}
                   height={1024}
                   className="w-full h-auto block"
