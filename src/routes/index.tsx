@@ -214,6 +214,8 @@ function Index() {
               Создаём премиальную лазерную гравировку на металле, дереве, коже и аксессуарах —
               <span className="text-white"> быстро, точно и с характером.</span>
             </p>
+            <CountdownTimer />
+
             <div className="mt-9 flex flex-wrap gap-4">
               <NeonButton variant="primary">Заказать гравировку</NeonButton>
               <NeonButton variant="ghost" href="#gallery">Посмотреть работы</NeonButton>
