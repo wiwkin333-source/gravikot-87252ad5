@@ -95,24 +95,18 @@ function Particles({ count = 28 }: { count?: number }) {
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex flex-col items-start leading-none ${className}`}>
-      <div
-        className="flex items-center gap-1 font-display font-black tracking-[0.22em] text-white"
-        style={{ textShadow: "0 0 12px rgba(255,255,255,0.55), 0 0 24px rgba(120,160,255,0.45)" }}
-      >
-        <span>ГРАВИК</span>
-        <PawPrint
-          className="h-[1em] w-[1em] text-white"
-          style={{ filter: "drop-shadow(0 0 10px #ff2bd6) drop-shadow(0 0 4px #ffffff)" }}
-        />
-        <span>Т</span>
-      </div>
-      <div
-        className="mt-1 font-tech uppercase tracking-[0.42em] text-[0.5em] text-white/80"
-        style={{ textShadow: "0 0 8px rgba(120,160,255,0.6)" }}
-      >
-        Ваш персональный лазер
-      </div>
+    <div
+      className={`flex items-center gap-1 font-display font-black uppercase tracking-[0.18em] text-white ${className}`}
+      style={{ textShadow: "0 0 12px rgba(255,255,255,0.6), 0 0 28px rgba(120,160,255,0.5)" }}
+    >
+      <span>ГРАВИК</span>
+      <PawPrint
+        className="h-[1em] w-[1em] text-white"
+        fill="currentColor"
+        strokeWidth={0}
+        style={{ filter: "drop-shadow(0 0 10px #ff2bd6) drop-shadow(0 0 4px #ffffff)" }}
+      />
+      <span>Т</span>
     </div>
   );
 }
