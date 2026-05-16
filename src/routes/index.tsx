@@ -28,63 +28,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function getTimeUntilEndOfWeek() {
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun..6=Sat
-  const daysUntilSunday = (7 - day) % 7;
-  const end = new Date(now);
-  end.setDate(now.getDate() + (daysUntilSunday === 0 && day !== 0 ? 0 : daysUntilSunday));
-  // End at next Sunday 23:59:59. If today is Sunday, end today.
-  end.setHours(23, 59, 59, 999);
-  let diff = end.getTime() - now.getTime();
-  if (diff < 0) diff = 0;
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
-  const minutes = Math.floor((diff % 3600000) / 60000);
-  const seconds = Math.floor((diff % 60000) / 1000);
-  return { days, hours, minutes, seconds };
-}
-
-function CountdownTimer() {
-  const [time, setTime] = useState(getTimeUntilEndOfWeek);
-  useEffect(() => {
-    const id = setInterval(() => setTime(getTimeUntilEndOfWeek()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const units: Array<{ v: number; l: string }> = [
-    { v: time.days, l: "дней" },
-    { v: time.hours, l: "часов" },
-    { v: time.minutes, l: "минут" },
-    { v: time.seconds, l: "секунд" },
-  ];
-  return (
-    <div className="mt-8 inline-flex flex-col gap-3 p-5 rounded-2xl glass border border-[color:var(--neon-magenta)]/30 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[color:var(--neon-magenta)]/10 via-transparent to-[color:var(--neon-blue)]/10" />
-      <div className="flex items-center gap-2 text-xs font-tech uppercase tracking-[0.25em] text-[color:var(--neon-magenta)] relative">
-        <Timer className="h-3.5 w-3.5" />
-        До конца акции
-      </div>
-      <div className="flex gap-3 relative">
-        {units.map((u, i) => (
-          <div key={u.l} className="flex items-center">
-            <div className="flex flex-col items-center min-w-[60px]">
-              <div className="font-display text-3xl md:text-4xl font-black tabular-nums text-neon">
-                {String(u.v).padStart(2, "0")}
-              </div>
-              <div className="mt-1 text-[10px] font-tech uppercase tracking-[0.18em] text-muted-foreground">
-                {u.l}
-              </div>
-            </div>
-            {i < units.length - 1 && (
-              <div className="mx-1 font-display text-2xl text-[color:var(--neon-magenta)]/60">:</div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 const advantages = [
   { icon: Crosshair, title: "Точность до микрона", desc: "Высокоточный лазер с погрешностью менее 0.01 мм для безупречных линий." },
   { icon: Sparkles, title: "Премиальное качество", desc: "Каждое изделие проходит контроль и финишную обработку вручную." },
@@ -271,7 +214,7 @@ function Index() {
               Создаём премиальную лазерную гравировку на металле, дереве, коже и аксессуарах —
               <span className="text-white"> быстро, точно и с характером.</span>
             </p>
-            <CountdownTimer />
+
 
             <div className="mt-9 flex flex-wrap gap-4">
               <NeonButton variant="primary">Заказать гравировку</NeonButton>
