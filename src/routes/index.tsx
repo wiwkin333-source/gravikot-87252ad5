@@ -96,15 +96,15 @@ function Particles({ count = 28 }: { count?: number }) {
 function Logo({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`inline-flex items-center font-display font-black uppercase tracking-[0.04em] text-white ${className}`}
-      style={{ textShadow: "0 0 12px rgba(255,255,255,0.6), 0 0 28px rgba(120,160,255,0.5)" }}
+      className={`inline-flex items-center font-display font-black uppercase tracking-[0.04em] text-white animate-pulse-glow ${className}`}
+      style={{ textShadow: "0 0 8px rgba(255,255,255,0.85), 0 0 18px rgba(41,227,255,0.7), 0 0 36px rgba(139,92,246,0.55)" }}
     >
       <span>ГРАВИК</span>
       <PawPrint
         className="mx-[0.02em] h-[1.35em] w-[1.35em] -translate-y-[0.04em] text-white"
         fill="currentColor"
         strokeWidth={0}
-        style={{ filter: "drop-shadow(0 0 10px #ff2bd6) drop-shadow(0 0 4px #ffffff)" }}
+        style={{ filter: "drop-shadow(0 0 12px #ff2bd6) drop-shadow(0 0 6px #ffffff)" }}
       />
       <span>Т</span>
     </div>
