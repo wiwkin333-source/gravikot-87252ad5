@@ -259,7 +259,7 @@ function Index() {
               />
               <div className="relative rounded-[2rem] overflow-hidden glass animate-pulse-glow">
                 <video
-                  src="/videos/hero.mp4"
+                  src="/wiwkin333-source/vid.git"
                   autoPlay
                   loop
                   muted
