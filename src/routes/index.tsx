@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import heroPoster from "@/assets/hero-poster.png";
 
 function HeroVideo() {
   const ref = useRef<HTMLVideoElement>(null);
+  const [ended, setEnded] = useState(false);
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
@@ -13,6 +15,7 @@ function HeroVideo() {
         } else {
           v.pause();
           v.currentTime = 0;
+          setEnded(false);
         }
       },
       { threshold: 0.1 }
@@ -20,20 +23,39 @@ function HeroVideo() {
     io.observe(v);
     return () => io.disconnect();
   }, []);
+
+  // Pre-switch slightly before the real end to mask the last-frame flash
+  const handleTimeUpdate = () => {
+    const v = ref.current;
+    if (!v || !v.duration) return;
+    if (v.duration - v.currentTime <= 0.25 && !ended) setEnded(true);
+  };
+
   return (
-    <video
-      ref={ref}
-      autoPlay
-      muted
-      playsInline
-      preload="auto"
-      width={720}
-      height={720}
-      className="w-full h-auto block"
-    >
-      <source src="/videos/hero.webm" type="video/webm" />
-      <source src="/videos/hero.mp4" type="video/mp4" />
-    </video>
+    <div className="relative w-full">
+      <video
+        ref={ref}
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+        width={720}
+        height={720}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={() => setEnded(true)}
+        poster={heroPoster}
+        className="w-full h-auto block"
+      >
+        <source src="/videos/hero.webm" type="video/webm" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
+      <img
+        src={heroPoster}
+        alt="Гравикот — ваш персональный лазер"
+        aria-hidden={!ended}
+        className={`absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-700 ease-in-out ${ended ? "opacity-100" : "opacity-0"}`}
+      />
+    </div>
   );
 }
 import {
