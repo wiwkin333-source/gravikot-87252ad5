@@ -258,16 +258,7 @@ function Index() {
                 }}
               />
               <div className="relative rounded-[2rem] overflow-hidden glass animate-pulse-glow">
-                <video
-                  src="/videos/hero.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  width={1024}
-                  height={1024}
-                  className="w-full h-auto block"
-                />
+                <HeroVideo />
               </div>
               {/* floating chips */}
               <div className="absolute -left-4 top-10 glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float" style={{ animationDelay: "1.5s" }}>
