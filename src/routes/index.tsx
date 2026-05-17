@@ -1,5 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+function HeroVideo() {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+          v.currentTime = 0;
+        }
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <video
+      ref={ref}
+      src="/videos/hero.mp4"
+      autoPlay
+      muted
+      playsInline
+      preload="auto"
+      width={720}
+      height={720}
+      className="w-full h-auto block"
+    />
+  );
+}
 import {
   Crosshair,
   Sparkles,
