@@ -23,7 +23,6 @@ function HeroVideo() {
   return (
     <video
       ref={ref}
-      src="/videos/hero.mp4"
       autoPlay
       muted
       playsInline
@@ -31,7 +30,10 @@ function HeroVideo() {
       width={720}
       height={720}
       className="w-full h-auto block"
-    />
+    >
+      <source src="/videos/hero.webm" type="video/webm" />
+      <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
   );
 }
 import {
