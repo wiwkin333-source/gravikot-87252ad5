@@ -1,5 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+function HeroVideo() {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+          v.currentTime = 0;
+        }
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <video
+      ref={ref}
+      src="/videos/hero.mp4"
+      autoPlay
+      muted
+      playsInline
+      preload="auto"
+      width={720}
+      height={720}
+      className="w-full h-auto block"
+    />
+  );
+}
 import {
   Crosshair,
   Sparkles,
@@ -258,16 +292,7 @@ function Index() {
                 }}
               />
               <div className="relative rounded-[2rem] overflow-hidden glass animate-pulse-glow">
-                <video
-                  src="/videos/hero.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  width={1024}
-                  height={1024}
-                  className="w-full h-auto block"
-                />
+                <HeroVideo />
               </div>
               {/* floating chips */}
               <div className="absolute -left-4 top-10 glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float" style={{ animationDelay: "1.5s" }}>
