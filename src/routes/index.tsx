@@ -283,7 +283,7 @@ function Index() {
 
             <div className="mt-9 flex flex-wrap gap-4">
               <NeonButton variant="primary">ЗАКАЗАТЬ</NeonButton>
-              <NeonButton variant="ghost" href="#gallery">Посмотреть работы</NeonButton>
+              <NeonButton variant="ghost" href="#gallery">ОСТАВИТЬ ОТЗЫВ</NeonButton>
             </div>
 
             <div className="mt-12 grid grid-cols-3 gap-6 max-w-md">
