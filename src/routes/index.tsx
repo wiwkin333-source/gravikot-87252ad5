@@ -319,11 +319,13 @@ function Index() {
                 <HeroVideo />
               </div>
               {/* floating chips */}
-              <div className="absolute -left-4 top-10 glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float" style={{ animationDelay: "1.5s" }}>
-                <span className="text-[color:var(--neon-blue)]">●</span> LASER CRAFT
-              </div>
-              <div className="absolute -right-4 bottom-16 glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float" style={{ animationDelay: "2.2s" }}>
-                Power <span className="text-[color:var(--neon-magenta)]">100%</span>
+              <div className="absolute -left-4 top-10 flex flex-col gap-2">
+                <div className="glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float text-amber-300" style={{ animationDelay: "1.5s" }}>
+                  <span className="text-amber-400">●</span> LASER CRAFT
+                </div>
+                <div className="glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float text-amber-300" style={{ animationDelay: "2.2s" }}>
+                  <span className="text-amber-400">●</span> Power 100%
+                </div>
               </div>
             </div>
           </div>
