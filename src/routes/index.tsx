@@ -269,7 +269,7 @@ function Index() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-tech uppercase tracking-[0.25em] text-[color:var(--neon-blue)]">
               <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--neon-blue)] animate-pulse" />
-              Ваш персональный лазер
+              БРЕЛОК ДЛЯ ТВОЕГО ВАЙБА В ПОДАРОК К ЗАКАЗУ
             </div>
             <h1 className="mt-6 font-display font-black uppercase leading-[1.05] text-[clamp(2.4rem,6vw,5.2rem)]">
               <span className="block shimmer-text">Скидка 27%</span>
