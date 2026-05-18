@@ -271,7 +271,7 @@ function Index() {
               <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--neon-blue)] animate-pulse" />
               Ваш персональный лазер
             </div>
-            <h1 className="mt-6 font-display font-black uppercase leading-[0.95] text-[clamp(2.4rem,6vw,5.2rem)]">
+            <h1 className="mt-6 font-display font-black uppercase leading-[1.05] text-[clamp(2.4rem,6vw,5.2rem)]">
               <span className="block shimmer-text">Скидка 27%</span>
               <span className="block text-white text-neon">до конца недели</span>
               <span className="block text-white/80 text-[0.55em] tracking-wide mt-4">на персональную лазерную гравировку</span>
