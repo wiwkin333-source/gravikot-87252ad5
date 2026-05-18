@@ -320,34 +320,6 @@ function Index() {
       </section>
 
       {/* ADVANTAGES */}
-      <section id="advantages" className="relative py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="max-w-3xl">
-            <p className="font-tech text-sm uppercase tracking-[0.3em] text-[color:var(--neon-blue)]">Преимущества</p>
-            <h2 className="mt-3 font-display font-black uppercase text-4xl md:text-5xl leading-tight">
-              Почему выбирают <span className="shimmer-text">ГРАВИКОТ</span>
-            </h2>
-            <p className="mt-4 text-muted-foreground text-lg">
-              Технологии, эстетика и характер — в каждом миллиметре.
-            </p>
-          </div>
-
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {advantages.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="group relative glass rounded-2xl p-7 hover:-translate-y-1 transition-all duration-500">
-                <div aria-hidden className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition pointer-events-none"
-                  style={{ boxShadow: "0 0 0 1px rgba(41,227,255,0.4), 0 20px 60px -10px rgba(139,92,246,0.4)" }} />
-                <div className="h-12 w-12 grid place-items-center rounded-xl neon-border">
-                  <Icon className="h-5 w-5 text-[color:var(--neon-blue)]" />
-                </div>
-                <h3 className="mt-6 font-display text-xl uppercase tracking-wider">{title}</h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* GALLERY */}
       <section id="gallery" className="relative py-28">
         <div className="mx-auto max-w-7xl px-6">
@@ -377,6 +349,34 @@ function Index() {
                 </div>
                 <div aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition pointer-events-none"
                   style={{ boxShadow: "inset 0 0 0 1px rgba(41,227,255,0.5), inset 0 0 40px rgba(255,43,214,0.25)" }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="advantages" className="relative py-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="max-w-3xl">
+            <p className="font-tech text-sm uppercase tracking-[0.3em] text-[color:var(--neon-blue)]">Преимущества</p>
+            <h2 className="mt-3 font-display font-black uppercase text-4xl md:text-5xl leading-tight">
+              Почему выбирают <span className="shimmer-text">ГРАВИКОТ</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              Технологии, эстетика и характер — в каждом миллиметре.
+            </p>
+          </div>
+
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {advantages.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="group relative glass rounded-2xl p-7 hover:-translate-y-1 transition-all duration-500">
+                <div aria-hidden className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition pointer-events-none"
+                  style={{ boxShadow: "0 0 0 1px rgba(41,227,255,0.4), 0 20px 60px -10px rgba(139,92,246,0.4)" }} />
+                <div className="h-12 w-12 grid place-items-center rounded-xl neon-border">
+                  <Icon className="h-5 w-5 text-[color:var(--neon-blue)]" />
+                </div>
+                <h3 className="mt-6 font-display text-xl uppercase tracking-wider">{title}</h3>
+                <p className="mt-3 text-muted-foreground leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
