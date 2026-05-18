@@ -194,7 +194,6 @@ function NeonButton({
           style={{ boxShadow: "0 0 30px rgba(41,227,255,0.9), 0 0 80px rgba(255,43,214,0.6)" }}
         />
         <span className="relative">{children}</span>
-        <ChevronRight className="relative h-4 w-4" />
       </a>
     );
   }
