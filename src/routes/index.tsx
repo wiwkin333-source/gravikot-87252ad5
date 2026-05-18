@@ -324,7 +324,7 @@ function Index() {
                   <span className="text-amber-400">●</span> LASER CRAFT
                 </div>
                 <div className="glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float text-amber-300" style={{ animationDelay: "2.2s" }}>
-                  <span className="text-amber-400">●</span> Power 100%
+                  <span className="text-amber-400">●</span>&nbsp;&nbsp;&nbsp;0,06 MM
                 </div>
               </div>
             </div>
