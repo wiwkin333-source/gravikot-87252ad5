@@ -486,7 +486,7 @@ function Index() {
                   Расскажите о проекте — пришлём идеи, цены и срок за пару часов.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <NeonButton variant="primary" href="mailto:hello@gravikot.ru">Заказать гравировку</NeonButton>
+                  <NeonButton variant="primary" href="mailto:hello@gravikot.ru">ЗАКАЗАТЬ</NeonButton>
                   <NeonButton variant="ghost" href="#gallery">Посмотреть работы</NeonButton>
                 </div>
               </div>
