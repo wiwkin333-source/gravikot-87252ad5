@@ -20,6 +20,9 @@ jobs:
         
       - name: Build project
         run: npm run build
+
+      - name: List files after build
+        run: ls -la dist/
         
       - name: Deploy to Yandex Object Storage
         uses: MrMeison/yc-object-storage-action@main
