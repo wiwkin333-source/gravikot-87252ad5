@@ -320,7 +320,7 @@ function Index() {
               </div>
               {/* floating chips */}
               <div className="absolute -left-4 top-10 glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float" style={{ animationDelay: "1.5s" }}>
-                <span className="text-[color:var(--neon-blue)]">●</span> Laser online
+                <span className="text-[color:var(--neon-blue)]">●</span> LASER CRAFT
               </div>
               <div className="absolute -right-4 bottom-16 glass rounded-xl px-3 py-2 text-xs font-tech uppercase tracking-[0.18em] animate-float" style={{ animationDelay: "2.2s" }}>
                 Power <span className="text-[color:var(--neon-magenta)]">100%</span>
