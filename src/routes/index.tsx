@@ -286,18 +286,6 @@ function Index() {
               <NeonButton variant="ghost" href="#gallery">ОСТАВИТЬ ОТЗЫВ</NeonButton>
             </div>
 
-            <div className="mt-12 grid grid-cols-3 gap-6 max-w-md">
-              {[
-                { v: "10K+", l: "изделий" },
-                { v: "0.01мм", l: "точность" },
-                { v: "24ч", l: "срочный заказ" },
-              ].map((s) => (
-                <div key={s.l}>
-                  <div className="font-display text-2xl font-bold text-neon-soft">{s.v}</div>
-                  <div className="mt-1 text-xs font-tech uppercase tracking-[0.18em] text-muted-foreground">{s.l}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Hero visual */}
