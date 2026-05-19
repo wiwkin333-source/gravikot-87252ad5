@@ -321,7 +321,7 @@ function Index() {
 
       {/* ADVANTAGES */}
       {/* GALLERY */}
-      <section id="gallery" className="relative py-28">
+      <section id="gallery" className="relative pt-8 pb-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
