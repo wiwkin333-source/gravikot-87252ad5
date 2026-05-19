@@ -321,7 +321,7 @@ function Index() {
 
       {/* ADVANTAGES */}
       {/* GALLERY */}
-      <section id="gallery" className="relative pt-8 pb-28">
+      <section id="gallery" className="relative pt-8 pb-14">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -355,7 +355,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="advantages" className="relative py-28">
+      <section id="advantages" className="relative py-14">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-3xl">
             <p className="font-tech text-sm uppercase tracking-[0.3em] text-[color:var(--neon-blue)]">Преимущества</p>
@@ -384,7 +384,7 @@ function Index() {
       </section>
 
       {/* PROCESS */}
-      <section id="process" className="relative py-28">
+      <section id="process" className="relative py-14">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-3xl">
             <p className="font-tech text-sm uppercase tracking-[0.3em] text-[color:var(--neon-violet)]">Процесс</p>
@@ -411,7 +411,7 @@ function Index() {
       </section>
 
       {/* REVIEWS */}
-      <section id="reviews" className="relative py-28">
+      <section id="reviews" className="relative py-14">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-3xl">
             <p className="font-tech text-sm uppercase tracking-[0.3em] text-[color:var(--neon-blue)]">Отзывы</p>
@@ -440,7 +440,7 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="relative py-28">
+      <section id="faq" className="relative py-14">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center">
             <p className="font-tech text-sm uppercase tracking-[0.3em] text-[color:var(--neon-magenta)]">FAQ</p>
@@ -455,7 +455,7 @@ function Index() {
       </section>
 
       {/* FINAL CTA */}
-      <section id="cta" className="relative py-28">
+      <section id="cta" className="relative py-14">
         <div className="mx-auto max-w-6xl px-6">
           <div className="relative rounded-[2rem] overflow-hidden p-10 md:p-16 glass">
             <div aria-hidden className="absolute inset-0">
