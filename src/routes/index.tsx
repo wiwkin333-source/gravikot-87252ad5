@@ -256,7 +256,7 @@ function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center pt-28 pb-20">
+      <section className="relative min-h-screen flex items-center pt-28 pb-4">
         <Particles count={36} />
         <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="beam" style={{ top: "18%" }} />
@@ -321,7 +321,7 @@ function Index() {
 
       {/* ADVANTAGES */}
       {/* GALLERY */}
-      <section id="gallery" className="relative py-28">
+      <section id="gallery" className="relative pt-8 pb-28">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
