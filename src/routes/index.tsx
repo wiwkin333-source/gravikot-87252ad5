@@ -256,7 +256,7 @@ function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center pt-28 pb-20">
+      <section className="relative min-h-screen flex items-center pt-28 pb-4">
         <Particles count={36} />
         <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="beam" style={{ top: "18%" }} />
