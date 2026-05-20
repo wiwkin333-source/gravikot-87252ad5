@@ -148,6 +148,26 @@
   }
 }
 .animate-blink-triple { animation: blink-triple 3s ease-in-out infinite; }
+
+@keyframes spark-flicker {
+  0%, 100% { opacity: 0; transform: translate(0,0) scale(0.7) rotate(var(--r, 0deg)); }
+  3% { opacity: 1; transform: translate(0,0) scale(1.1) rotate(var(--r, 0deg)); }
+  6% { opacity: 0.4; }
+  9% { opacity: 1; transform: translate(1px,-2px) scale(1) rotate(var(--r, 0deg)); }
+  12% { opacity: 0; }
+  40%, 60% { opacity: 0; }
+  63% { opacity: 1; transform: translate(-1px,1px) scale(1.05) rotate(var(--r, 0deg)); }
+  66% { opacity: 0.3; }
+  69% { opacity: 1; }
+  72% { opacity: 0; }
+}
+.spark {
+  position: absolute;
+  pointer-events: none;
+  color: #29e3ff;
+  filter: drop-shadow(0 0 4px #29e3ff) drop-shadow(0 0 8px #8b5cf6);
+  animation: spark-flicker 2.4s ease-in-out infinite;
+}
 .animate-float { animation: float-slow 6s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 3.4s ease-in-out infinite; }
 .animate-spin-slow { animation: spin-slow 30s linear infinite; }

@@ -193,6 +193,11 @@ function NeonButton({
         <span className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{ boxShadow: "0 0 30px rgba(41,227,255,0.9), 0 0 80px rgba(255,43,214,0.6)" }}
         />
+        <Zap className="spark h-3 w-3" style={{ top: -8, left: -6, ["--r" as any]: "-20deg", animationDelay: "0s" }} />
+        <Zap className="spark h-2.5 w-2.5" style={{ top: -10, right: 14, ["--r" as any]: "18deg", animationDelay: "0.4s" }} />
+        <Zap className="spark h-3 w-3" style={{ bottom: -8, right: -6, ["--r" as any]: "160deg", animationDelay: "0.9s" }} />
+        <Zap className="spark h-2.5 w-2.5" style={{ bottom: -10, left: 18, ["--r" as any]: "200deg", animationDelay: "1.4s" }} />
+        <Zap className="spark h-2 w-2" style={{ top: 6, right: -10, ["--r" as any]: "60deg", animationDelay: "1.8s" }} />
         <span className="relative">{children}</span>
       </a>
     );
