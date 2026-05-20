@@ -133,6 +133,13 @@
   100% { background-position: 200% 0 }
 }
 
+@keyframes blink-triple {
+  0%, 100% { opacity: 1; }
+  10%, 30%, 50% { opacity: 0.25; }
+  20%, 40%, 60% { opacity: 1; }
+  70% { opacity: 1; }
+}
+.animate-blink-triple { animation: blink-triple 3s ease-in-out infinite; }
 .animate-float { animation: float-slow 6s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 3.4s ease-in-out infinite; }
 .animate-spin-slow { animation: spin-slow 30s linear infinite; }
