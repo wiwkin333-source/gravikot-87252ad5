@@ -390,11 +390,11 @@ function Index() {
       {/* GALLERY LIGHTBOX */}
       {activeGallery !== null && (
         <div
-          className={`fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 md:p-8 bg-black/80 backdrop-blur-md transition-opacity duration-300 ${galleryClosing ? "opacity-0" : "opacity-100"}`}
+          className={`fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 md:p-8 bg-black/80 backdrop-blur-md ${galleryClosing ? "opacity-0 transition-opacity duration-300" : "animate-in fade-in duration-300"}`}
           onClick={closeGallery}
         >
           <div
-            className={`relative rounded-3xl overflow-hidden glass neon-border transition-all duration-500 ease-out will-change-transform ${galleryClosing ? "opacity-0 scale-90" : "opacity-100 scale-100"}`}
+            className={`relative rounded-3xl overflow-hidden glass neon-border will-change-transform ${galleryClosing ? "opacity-0 scale-90 transition-all duration-300 ease-in" : "animate-in zoom-in-90 fade-in duration-500 ease-out"}`}
             onClick={(e) => e.stopPropagation()}
             style={{
               boxShadow: "0 0 80px rgba(41,227,255,0.35), 0 0 160px rgba(255,43,214,0.25)",
