@@ -234,6 +234,19 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 function Index() {
+  const galleryItems = [g1, g2, g3, g4, g5, g6];
+  const galleryTitles = ["Metal Series", "Wood Mandala", "Leather Edge", "Pendant Nox", "Glass Aura", "Phantom Case"];
+  const [activeGallery, setActiveGallery] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (activeGallery === null) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActiveGallery(null); };
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+  }, [activeGallery]);
+
   return (
     <div className="relative min-h-screen bg-[#050510] text-foreground overflow-hidden">
       {/* Ambient background */}
