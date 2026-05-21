@@ -237,12 +237,20 @@ function Index() {
   const galleryItems = [g1, g2, g3, g4, g5, g6];
   const galleryTitles = ["Metal Series", "Wood Mandala", "Leather Edge", "Pendant Nox", "Glass Aura", "Phantom Case"];
   const [activeGallery, setActiveGallery] = useState<number | null>(null);
+  const [galleryClosing, setGalleryClosing] = useState(false);
+  const closeGallery = () => {
+    setGalleryClosing(true);
+    window.setTimeout(() => {
+      setActiveGallery(null);
+      setGalleryClosing(false);
+    }, 320);
+  };
 
   useEffect(() => {
     if (activeGallery === null) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActiveGallery(null); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeGallery(); };
     window.addEventListener("keydown", onKey);
     return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
   }, [activeGallery]);
@@ -382,43 +390,47 @@ function Index() {
       {/* GALLERY LIGHTBOX */}
       {activeGallery !== null && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md animate-in fade-in duration-300"
-          onClick={() => setActiveGallery(null)}
+          className={`fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 md:p-8 bg-black/80 backdrop-blur-md ${galleryClosing ? "opacity-0 transition-opacity duration-300" : "animate-in fade-in duration-300"}`}
+          onClick={closeGallery}
         >
           <div
-            className="relative w-full max-w-4xl aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden glass neon-border animate-in zoom-in-95 duration-500"
+            className={`relative rounded-3xl overflow-hidden glass neon-border will-change-transform ${galleryClosing ? "opacity-0 scale-90 transition-all duration-300 ease-in" : "animate-in zoom-in-90 fade-in duration-500 ease-out"}`}
             onClick={(e) => e.stopPropagation()}
-            style={{ boxShadow: "0 0 80px rgba(41,227,255,0.35), 0 0 160px rgba(255,43,214,0.25)" }}
+            style={{
+              boxShadow: "0 0 80px rgba(41,227,255,0.35), 0 0 160px rgba(255,43,214,0.25)",
+              maxWidth: "min(95vw, 1100px)",
+              maxHeight: "min(90vh, 900px)",
+            }}
           >
             <img
               src={galleryItems[activeGallery]}
               alt={galleryTitles[activeGallery]}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="block w-auto h-auto max-w-[95vw] max-h-[90vh] object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-90" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050510]/80 via-transparent to-[#050510]/40" />
 
             {/* Close button */}
             <button
               type="button"
               aria-label="Закрыть"
-              onClick={() => setActiveGallery(null)}
-              className="absolute top-4 right-4 h-11 w-11 grid place-items-center rounded-full bg-red-600 hover:bg-red-500 text-white shadow-[0_0_24px_rgba(239,68,68,0.7)] transition cursor-pointer"
+              onClick={closeGallery}
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 h-10 w-10 sm:h-11 sm:w-11 grid place-items-center rounded-full bg-red-600 hover:bg-red-500 text-white shadow-[0_0_24px_rgba(239,68,68,0.7)] transition cursor-pointer z-10"
             >
               <X className="h-5 w-5" />
             </button>
 
             {/* Title */}
-            <div className="absolute top-4 left-5">
-              <div className="font-tech text-xs uppercase tracking-[0.25em] text-[color:var(--neon-blue)]">#{String(activeGallery + 1).padStart(2, "0")}</div>
-              <div className="font-display text-2xl mt-1">{galleryTitles[activeGallery]}</div>
+            <div className="absolute top-3 left-4 sm:top-4 sm:left-5 pr-14">
+              <div className="font-tech text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[color:var(--neon-blue)]">#{String(activeGallery + 1).padStart(2, "0")}</div>
+              <div className="font-display text-lg sm:text-2xl mt-1 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">{galleryTitles[activeGallery]}</div>
             </div>
 
             {/* Order button */}
-            <div className="absolute inset-x-0 bottom-0 p-6 flex justify-center">
+            <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 flex justify-center">
               <a
                 href="#cta"
-                onClick={() => setActiveGallery(null)}
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl neon-border font-tech uppercase tracking-[0.22em] text-sm bg-[#0a0a18]/80 hover:scale-105 transition"
+                onClick={closeGallery}
+                className="inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl neon-border font-tech uppercase tracking-[0.22em] text-xs sm:text-sm bg-[#0a0a18]/80 hover:scale-105 transition"
               >
                 Заказать <ChevronRight className="h-4 w-4" />
               </a>
