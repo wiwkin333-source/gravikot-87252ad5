@@ -250,7 +250,7 @@ function Index() {
     if (activeGallery === null) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActiveGallery(null); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeGallery(); };
     window.addEventListener("keydown", onKey);
     return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
   }, [activeGallery]);
