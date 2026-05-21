@@ -73,6 +73,7 @@ import {
   Mail,
   Instagram,
   Send,
+  X,
 } from "lucide-react";
 import heroCat from "@/assets/gravicat-hero.png";
 import g1 from "@/assets/gallery-1.jpg";
@@ -233,6 +234,19 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 function Index() {
+  const galleryItems = [g1, g2, g3, g4, g5, g6];
+  const galleryTitles = ["Metal Series", "Wood Mandala", "Leather Edge", "Pendant Nox", "Glass Aura", "Phantom Case"];
+  const [activeGallery, setActiveGallery] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (activeGallery === null) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActiveGallery(null); };
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+  }, [activeGallery]);
+
   return (
     <div className="relative min-h-screen bg-[#050510] text-foreground overflow-hidden">
       {/* Ambient background */}
@@ -341,24 +355,77 @@ function Index() {
           </div>
 
           <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[g1, g2, g3, g4, g5, g6].map((src, i) => (
-              <div key={i} className="group relative rounded-2xl overflow-hidden glass aspect-square">
+            {galleryItems.map((src, i) => (
+              <button
+                type="button"
+                key={i}
+                onClick={() => setActiveGallery(i)}
+                className="group relative rounded-2xl overflow-hidden glass aspect-square text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--neon-blue)]"
+              >
                 <img src={src} alt={`Работа ${i + 1}`} loading="lazy" width={800} height={800}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-80" />
                 <div className="absolute inset-x-0 bottom-0 p-5 translate-y-2 group-hover:translate-y-0 transition">
                   <div className="font-tech text-xs uppercase tracking-[0.25em] text-[color:var(--neon-blue)]">#{String(i + 1).padStart(2, "0")}</div>
                   <div className="font-display text-lg mt-1">
-                    {["Metal Series", "Wood Mandala", "Leather Edge", "Pendant Nox", "Glass Aura", "Phantom Case"][i]}
+                    {galleryTitles[i]}
                   </div>
                 </div>
                 <div aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition pointer-events-none"
                   style={{ boxShadow: "inset 0 0 0 1px rgba(41,227,255,0.5), inset 0 0 40px rgba(255,43,214,0.25)" }} />
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </section>
+
+      {/* GALLERY LIGHTBOX */}
+      {activeGallery !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md animate-in fade-in duration-300"
+          onClick={() => setActiveGallery(null)}
+        >
+          <div
+            className="relative w-full max-w-4xl aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden glass neon-border animate-in zoom-in-95 duration-500"
+            onClick={(e) => e.stopPropagation()}
+            style={{ boxShadow: "0 0 80px rgba(41,227,255,0.35), 0 0 160px rgba(255,43,214,0.25)" }}
+          >
+            <img
+              src={galleryItems[activeGallery]}
+              alt={galleryTitles[activeGallery]}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-90" />
+
+            {/* Close button */}
+            <button
+              type="button"
+              aria-label="Закрыть"
+              onClick={() => setActiveGallery(null)}
+              className="absolute top-4 right-4 h-11 w-11 grid place-items-center rounded-full bg-red-600 hover:bg-red-500 text-white shadow-[0_0_24px_rgba(239,68,68,0.7)] transition cursor-pointer"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {/* Title */}
+            <div className="absolute top-4 left-5">
+              <div className="font-tech text-xs uppercase tracking-[0.25em] text-[color:var(--neon-blue)]">#{String(activeGallery + 1).padStart(2, "0")}</div>
+              <div className="font-display text-2xl mt-1">{galleryTitles[activeGallery]}</div>
+            </div>
+
+            {/* Order button */}
+            <div className="absolute inset-x-0 bottom-0 p-6 flex justify-center">
+              <a
+                href="#cta"
+                onClick={() => setActiveGallery(null)}
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl neon-border font-tech uppercase tracking-[0.22em] text-sm bg-[#0a0a18]/80 hover:scale-105 transition"
+              >
+                Заказать <ChevronRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       <section id="advantages" className="relative py-14">
         <div className="mx-auto max-w-7xl px-6">
