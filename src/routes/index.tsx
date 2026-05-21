@@ -237,6 +237,14 @@ function Index() {
   const galleryItems = [g1, g2, g3, g4, g5, g6];
   const galleryTitles = ["Metal Series", "Wood Mandala", "Leather Edge", "Pendant Nox", "Glass Aura", "Phantom Case"];
   const [activeGallery, setActiveGallery] = useState<number | null>(null);
+  const [galleryClosing, setGalleryClosing] = useState(false);
+  const closeGallery = () => {
+    setGalleryClosing(true);
+    window.setTimeout(() => {
+      setActiveGallery(null);
+      setGalleryClosing(false);
+    }, 320);
+  };
 
   useEffect(() => {
     if (activeGallery === null) return;
