@@ -73,6 +73,7 @@ import {
   Mail,
   Instagram,
   Send,
+  X,
 } from "lucide-react";
 import heroCat from "@/assets/gravicat-hero.png";
 import g1 from "@/assets/gallery-1.jpg";
