@@ -10,11 +10,11 @@ RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-# Этап запуска — Node.js раздаёт статику
+# Этап запуска
 FROM node:20-alpine
 WORKDIR /app
 
-COPY --from=builder /app/dist/client ./dist/client
+COPY --from=builder /app/dist ./dist
 COPY server-node.mjs ./
 
 EXPOSE 80
