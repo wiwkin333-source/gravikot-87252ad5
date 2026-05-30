@@ -74,6 +74,7 @@ const server = createServer(async (req, res) => {
       );
       const resHeaders = {};
       cfResponse.headers.forEach((v, k) => { resHeaders[k] = v; });
+      console.log("SSR response:", cfResponse.status, req.url);
       res.writeHead(cfResponse.status, resHeaders);
       res.end(Buffer.from(await cfResponse.arrayBuffer()));
       return;
@@ -88,3 +89,4 @@ const server = createServer(async (req, res) => {
 
 getSsrHandler();
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// debug patch - remove later
