@@ -31,7 +31,7 @@ let ssrHandler = null;
 async function getSsrHandler() {
   if (ssrHandler) return ssrHandler;
   try {
-    const mod = await import('./dist/server/server.js');
+    const mod = await import('./dist/server/index.js');
     ssrHandler = mod.default;
     console.log('SSR handler loaded');
   } catch(e) {
