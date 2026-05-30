@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const clientDir = join(__dirname, 'dist/client');
+const assetsDir = join(__dirname, 'dist/server/assets');
 const PORT = process.env.PORT || 80;
 
 const mimeTypes = {
@@ -17,28 +18,37 @@ const mimeTypes = {
 };
 
 let ssrHandler = null;
+
 async function getSsrHandler() {
   if (ssrHandler) return ssrHandler;
 
-  // Найти worker-entry файл динамически
-  const assetsDir = join(__dirname, 'dist/server/assets');
   const files = await readdir(assetsDir);
-  const workerFile = files.find(f => f.startsWith('worker-entry'));
 
+  // Стратегия 1: worker-entry (Docker сборка)
+  const workerFile = files.find(f => f.startsWith('worker-entry'));
   if (workerFile) {
-    const path = `./dist/server/assets/${workerFile}`;
-    const mod = await import(path);
-    ssrHandler = mod.default || mod.w || Object.values(mod)[0];
-    console.log(`SSR loaded from ${path}, type: ${typeof ssrHandler}`);
-    if (ssrHandler && typeof ssrHandler.fetch === 'function') {
-      console.log('SSR handler has fetch method — OK');
-    } else {
-      console.error('SSR handler has NO fetch method!', Object.keys(ssrHandler || {}));
+    const mod = await import(`./dist/server/assets/${workerFile}`);
+    const handler = mod.default || mod.w || Object.values(mod)[0];
+    if (handler && typeof handler.fetch === 'function') {
+      ssrHandler = handler;
+      console.log(`SSR loaded from worker-entry: ${workerFile}`);
+      return ssrHandler;
     }
-    return ssrHandler;
   }
 
-  console.error('worker-entry not found!');
+  // Стратегия 2: server-*.js с mod.s.default (локальная сборка)
+  const serverFile = files.find(f => f.startsWith('server-') && f.endsWith('.js'));
+  if (serverFile) {
+    const mod = await import(`./dist/server/assets/${serverFile}`);
+    const handler = mod?.s?.default || mod.default;
+    if (handler && typeof handler.fetch === 'function') {
+      ssrHandler = handler;
+      console.log(`SSR loaded from server file: ${serverFile}`);
+      return ssrHandler;
+    }
+  }
+
+  console.error('SSR handler not found!', files);
   return null;
 }
 
@@ -62,7 +72,7 @@ const server = createServer(async (req, res) => {
 
   // SSR
   const handler = await getSsrHandler();
-  if (handler && typeof handler.fetch === 'function') {
+  if (handler) {
     try {
       const headers = {};
       for (const [k, v] of Object.entries(req.headers)) {
@@ -74,7 +84,6 @@ const server = createServer(async (req, res) => {
       );
       const resHeaders = {};
       cfResponse.headers.forEach((v, k) => { resHeaders[k] = v; });
-      console.log("SSR response:", cfResponse.status, req.url);
       res.writeHead(cfResponse.status, resHeaders);
       res.end(Buffer.from(await cfResponse.arrayBuffer()));
       return;
@@ -89,4 +98,3 @@ const server = createServer(async (req, res) => {
 
 getSsrHandler();
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-// debug patch - remove later
