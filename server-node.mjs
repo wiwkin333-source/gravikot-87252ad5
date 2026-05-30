@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
+import { readFile, stat, readdir } from 'node:fs/promises';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -19,18 +19,26 @@ const mimeTypes = {
 let ssrHandler = null;
 async function getSsrHandler() {
   if (ssrHandler) return ssrHandler;
-  // Пробуем оба возможных имени файла
-  for (const candidate of ['./dist/server/index.js', './dist/server/server.js']) {
-    try {
-      const mod = await import(candidate);
-      ssrHandler = mod.default;
-      console.log(`SSR handler loaded from ${candidate}`);
-      return ssrHandler;
-    } catch(e) {
-      console.log(`Not found: ${candidate}`);
+
+  // Найти worker-entry файл динамически
+  const assetsDir = join(__dirname, 'dist/server/assets');
+  const files = await readdir(assetsDir);
+  const workerFile = files.find(f => f.startsWith('worker-entry'));
+
+  if (workerFile) {
+    const path = `./dist/server/assets/${workerFile}`;
+    const mod = await import(path);
+    ssrHandler = mod.default || mod.w || Object.values(mod)[0];
+    console.log(`SSR loaded from ${path}, type: ${typeof ssrHandler}`);
+    if (ssrHandler && typeof ssrHandler.fetch === 'function') {
+      console.log('SSR handler has fetch method — OK');
+    } else {
+      console.error('SSR handler has NO fetch method!', Object.keys(ssrHandler || {}));
     }
+    return ssrHandler;
   }
-  console.error('SSR handler not found!');
+
+  console.error('worker-entry not found!');
   return null;
 }
 
@@ -54,7 +62,7 @@ const server = createServer(async (req, res) => {
 
   // SSR
   const handler = await getSsrHandler();
-  if (handler) {
+  if (handler && typeof handler.fetch === 'function') {
     try {
       const headers = {};
       for (const [k, v] of Object.entries(req.headers)) {
