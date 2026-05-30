@@ -1,4 +1,3 @@
-# Этап сборки
 FROM node:20-alpine AS builder
 WORKDIR /app
 
@@ -10,10 +9,8 @@ RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-# Показать что собралось
-RUN echo "=== dist/server ===" && ls dist/server/ && echo "=== dist/server/assets ===" && ls dist/server/assets/
+RUN echo "=== index.js content ===" && cat dist/server/index.js
 
-# Этап запуска
 FROM node:20-alpine
 WORKDIR /app
 
